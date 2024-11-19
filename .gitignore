@@ -2,7 +2,7 @@
 
 .vscode/launch.json
 
-**/.mypy_cache/
+.vscode/
 
 **/__pycache__/
 **/dist/
