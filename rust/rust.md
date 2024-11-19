@@ -4,15 +4,15 @@
 
 +++++
 
-# Rust 第三次课
+# 系统开发实践第三次课
 
 ----
 
 ## 自我介绍
 
 + 詹奇: <red>二</red>年级博士生
-+ 邮件: qizhan@zju.edu.cn
-+ 个人主页: <https://qi-zhan.github.io/>
++ ✉️ qizhan@zju.edu.cn
++ 🏠 <https://qi-zhan.github.io/>
 + 研究方向: 软件分析/测试/验证/<del>AI</del>的应用
 + 常年本课程助教 (第<red>三</red>年😱)
 
@@ -46,8 +46,18 @@
     - 每次保存 `markdown` (源文件)的时候, 自动渲染 `HTML`.
     - 一个命令行工具: 每次文件系统更改, 执行某个指令
 --
-- 你觉得我需要几行/多少时间?
+- 你觉得需要几行/多少时间?
     - Python Or Rust?
+
+----
+
+## Python vs. Rust
+
+- Python
+    - `watchdog` + `argparser`
+--
+- Rust
+    - `notify` + `clap`
 
 ---
 
