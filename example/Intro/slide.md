@@ -324,6 +324,31 @@ $$\lim_{x \to \infty} x^2_{22} - \int_{1}^{5}x\mathrm{d}x + \sum_{n=1}^{20} n^{2
 <img ... src=... width="678px">
 ```
 
+---
+
+## 多列布局
+
+<div class="mul-cols">
+    <div class="col">
+- 第一列
+    </div>
+    <div class="col">
+- 第二列
+```c
+int main() {
+    int i = 0;
+    return 0;
+}
+```
+    </div>
+    <div class="col">
+- 第三列
+- 123
+    </div>
+</div>
+
+> 我使用极其“邪恶”的方式实现, 所以可能有 bug.
+
 ----
 
 ## 其他

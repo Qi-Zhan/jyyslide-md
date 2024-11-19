@@ -173,3 +173,10 @@ section .center {
 .reveal li {
     margin-top: 10px;
 }
+
+.reveal .mul-cols {
+    display: flex;
+}
+.reveal .mul-cols .col {
+    width: 100%
+}

@@ -1,3 +1,4 @@
+import re
 import json
 import os
 import shutil
@@ -60,7 +61,7 @@ def vertical_to_fragment(vertical: str) -> str:
 def vertical_to_animate(vertical: str) -> str:
     animates = vertical.split(st.op_animate_section)
 
-    animate_list = list()
+    animate_list = []
     template = "{}"
 
     for i in range(len(animates)):
@@ -72,7 +73,7 @@ def vertical_to_animate(vertical: str) -> str:
 def horizontal_to_vertical(horizontal: str) -> str:
     verticals_divided_by_second = horizontal.split(st.op_second_section)
 
-    sections = list()
+    sections = []
     template_second = "<section>{}</section>"
 
     for vertical_divided_by_second in verticals_divided_by_second:
@@ -112,7 +113,7 @@ def horizontal_to_vertical(horizontal: str) -> str:
 def md_divide_to_horizontal(content: str):
     horizontals = content.split(st.op_first_section)
 
-    sections = list()
+    sections = []
     template = "<section>{}</section>"
 
     for horizontal in horizontals:
@@ -126,9 +127,32 @@ def md_divide_to_horizontal(content: str):
     return "".join(sections)
 
 
+MULCOLs = "<div class=\"mul-cols\">"
+COLS = "<div class=\"col\">"
+END = "</div>"
+
+DIRTY_MULCOLS = "\nJYYMULCOLS\n"
+DIRTY_COLS = "\nJYYCOL\n"
+DIRTY_END = "\nJYYEND\n"
+
+DIRTY2_MULCOLS = '<p class="font-serif my-1">JYYMULCOLS</p>'
+DIRTY2_COLS = '<p class="font-serif my-1">JYYCOL</p>'
+DIRTY2_END = '<p class="font-serif my-1">JYYEND</p>'
+
+splitter = re.compile(rf"{MULCOLs}|{COLS}|{END}")
+
 def get_body(content):
-    html_first_sections = md_divide_to_horizontal(content)
-    return html_first_sections
+    content = content.replace(MULCOLs, DIRTY_MULCOLS)
+    content = content.replace(COLS, DIRTY_COLS)
+    content = content.replace(END, DIRTY_END)
+
+    content = md_divide_to_horizontal(content)
+
+    content = content.replace(DIRTY2_MULCOLS, MULCOLs)
+    content = content.replace(DIRTY2_COLS, COLS)
+    content = content.replace(DIRTY2_END, END)
+
+    return content
 
 
 def process_image_link():
