@@ -1,12 +1,8 @@
 # jyyslide-md
 
-本项目是对 [zweix123](https://github.com/zweix123/jyyslide-md) 仓库的 fork.
-预期修改如下:
-
-- [x] 增加多列布局
-- [x] 可以直接使用 `pip install .` 安装本项目, 无需使用 poetry.
-
 ## QuickStart
+
+我想直接看看模版效果: <https://qi-zhan.github.io/jyyslide-md/#/>
 
 ```bash
 git clone https://github.com/Qi-Zhan/jyyslide-md.git
@@ -18,6 +14,13 @@ python main.py example/Intro/slide.md
 在浏览器中打开 `example\Intro\dist\index.html` 即可查看幻灯片, 推荐开发时使用 VSCode 的 Live Preview 插件打开.
 
 > 其他分支下有我实际用该项目完成的幻灯片, 可供参考.
+
+本项目是对 [zweix123](https://github.com/zweix123/jyyslide-md) 仓库的 fork.
+预期修改如下:
+
+- [x] 增加多列布局
+- [x] 可以直接使用 `pip install .` 安装本项目, 无需使用 poetry
+- [ ] ...
 
 **以下为原 README.**
 
