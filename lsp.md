@@ -20,7 +20,7 @@ print(a) #  哪个a被打印？
 ```
 --
 - 重构代码
-    + 上述代码中 `rename` 变量 `a` 为 `b`，需要确定哪些地方需要修改
+    + 上述代码中 `rename` 变量 `a` 为 `b`，得到重构后的代码
 --
 - 获得当前使用变量的类型
     + (获得可使用的方法) ➡️ 代码补全
@@ -146,9 +146,73 @@ call: k() [2,0:2,3]
 
 ----
 
-## 🧑‍💻 + 🌲 + 🤖
+## Tree-sitter
+
+> 那么我们该如何获得 AST 呢?
+
+<img src="treesitter.png" width="70%">
+
+- 一股靠谱的气息, 多语言可用, 可用于多语言
+
+---
+
+## Tree-sitter API 不够友好 🤔
+
+```python
+def foo():
+    if bar:
+        baz()
+```
+--
+理想: 像使用 Python AST 一样
+
+```python
+assert isinstance(root_node, Module)
+function_node = root_node.body[0] # type: FunctionDef
+assert isinstance(function_node, FunctionDef)
+assert function_node.name == 'foo' # type: str
+```
+--
+现实: 不知道这个 `Node` 是什么, 有哪些 `Field` 可以用
+```python
+assert root_node.type == 'module'
+function_node = root_node.children[0]
+assert function_node.type == 'function_definition'
+assert function_node.child_by_field_name('name').type == 'identifier'
+```
 
 ----
 
-## 系统设计
+## 当然这也不是 Tree-sitter 的问题
 
+- 其本质上是用纯 C 写的
+    + 有各个语言的 binding 就不错了
+--
+
+- 所以我们可以自己做一个更友好的 API
+    - 要不就叫 Tree-prettier
+--
+- 其实也没什么难的
+    + 真.代码生成
+    + 我们需要实现一个程序, 读入 tree-sitter 的语法描述, 输出 Python 类的设计
+    + 已经有 Haskell, Rust 的实现了
+
+----
+
+## 🧑‍💻 + 🌲 + 🤖
+
+用户:
+
+- 在 Python 层面操作 “友好” 的 AST
+    + 发出请求 (例如得到函数的定义)
+--
+框架:
+
+2. “友好” 的 AST 转换为 Tree-sitter 的 AST
+3. Tree-sitter 的 AST 转换为 LSP 的 Position
+4. 通过 LSP 协议得到 Position 结果
+5. Position 结果转换为 “友好” 的 AST 结点
+
+----
+
+## 更多的用途?
