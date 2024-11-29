@@ -14,6 +14,13 @@ if __name__ == "__main__":
     if args.watch:
         print("watching file for changes")
         import time
+
+        try:
+            import watchdog
+        except Exception:
+            raise ImportError(
+                "watchdog library is required for --watch option, install it using 'pip install watchdog'"
+            )
         from watchdog.events import FileSystemEvent, FileSystemEventHandler
         from watchdog.observers import Observer
 
