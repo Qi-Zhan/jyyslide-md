@@ -8,6 +8,8 @@
 
 ## QuickStart
 
+[我想直接看看效果](https://qi-zhan.github.io/jyyslide-md/#/).
+
 ```bash
 git clone https://github.com/Qi-Zhan/jyyslide-md.git
 cd jyyslide-md
