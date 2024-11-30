@@ -9,8 +9,8 @@
 
 ## 动机: 程序语义的轻量级分析
 
-- 需要确定变量的 def-use 关系
-    + 找到函数的定义/给大模型提供精准输入
+- 找到函数的定义/给大模型提供精准输入
+    - 需要确定变量的 def-use 关系
 ```python
 a = 1
 def a():
@@ -19,26 +19,59 @@ def a():
 print(a) #  哪个a被打印？
 ```
 --
-- 重构代码
-    + 上述代码中 `rename` 变量 `a` 为 `b`，得到重构后的代码
---
-- 获得当前使用变量的类型
-    + (获得可使用的方法) ➡️ 代码补全
---
+- 重构代码: `rename` 变量 `a` 为 `b`，得到重构后的代码
+```python
+b = 1
+def b():
+    pass
 
-> 那么, 如何实现这些功能呢？
+print(b)
+```
 
 ----
 
-## 尝试1: 自己写
+## 更多例子
+
+- Java 找到函数/变量的定义/rename ➡️ 确定 def-use 关系
+--
+- Rust 代码补全 ➡️ 获得当前变量可使用的方法  ➡️ 获得变量的类型
+--
+- C++ 分析 API 的使用情况 ➡️ 找到调用函数的源代码
+--
+- Python 确定库中的函数是否会被调用 ➡️ Find References
+- ...
+> 在软工科研工作中, 在很多问题是需要对程序<red>语义</red>而不仅仅是<red>语法</red>的分析才能完成的
+--
+
+<center>那么, 如何实现这些功能呢？</center>
+
+----
+
+## 尝试1.1: 自己写 (瞎写)
+
+- 基于正则表达式+奇怪的字符串处理+AST语法
+    + 在数据集上没出问题就算成功 👀
+--
+- 不是一个好选择
+    + <del> 写的大概率是错的 </del>
+        + 既不 sound 也不 complete
+    + 对这个实现有所怀疑 :(
+
+----
+
+## 尝试1.2: 自己写 (好好写)
 
 - 这些不过是编译器前端的基础分析罢了
     + 我们完全可以基于 AST 自己做类型检查, 语义分析
 --
-- 不是一个好选择
-    + 一个“真正”的语言太过复杂了
-    + 每个语言都要自己写一遍
-    + <del> 写的大概率是错的 </del>
+- 一个“真正”的语言太过复杂了
+- 每个语言都要自己写一遍
+
+>  <center>“浪费”宝贵的科研时间</center>
+
+--
+
+为什么要自己写呢？
 
 ----
 
@@ -64,7 +97,9 @@ print(a) #  哪个a被打印？
 
 ## 尝试3: 从 Language Server “偷”信息
 
-> The Language Server Protocol (LSP) defines the <red>protocol</red> used between an editor or IDE and a language server that provides language features like auto complete, go to definition, find all references etc
+> The Language Server Protocol (LSP) defines the <red>protocol</red> used between an editor or IDE and a language server that provides language features like <red>auto complete, go to definition, find all references etc </red>.
+
+<center><img src="./peek.png", width="60%"></center>
 
 ----
 
