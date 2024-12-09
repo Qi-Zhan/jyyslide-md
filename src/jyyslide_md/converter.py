@@ -8,7 +8,6 @@ from jinja2 import Template
 from pyquery import PyQuery  # type: ignore
 
 from .util import *
-
 from . import settings as st
 
 
@@ -127,8 +126,8 @@ def md_divide_to_horizontal(content: str):
     return "".join(sections)
 
 
-MULCOLs = "<div class=\"mul-cols\">"
-COLS = "<div class=\"col\">"
+MULCOLs = '<div class="mul-cols">'
+COLS = '<div class="col">'
 END = "</div>"
 
 DIRTY_MULCOLS = "\nJYYMULCOLS\n"
@@ -140,6 +139,7 @@ DIRTY2_COLS = '<p class="font-serif my-1">JYYCOL</p>'
 DIRTY2_END = '<p class="font-serif my-1">JYYEND</p>'
 
 splitter = re.compile(rf"{MULCOLs}|{COLS}|{END}")
+
 
 def get_body(content):
     content = content.replace(MULCOLs, DIRTY_MULCOLS)
@@ -184,7 +184,7 @@ def process_front_matter():
         data = json.loads(front_matter)
     except Exception as e:
         data = yaml.load(front_matter, Loader=yaml.SafeLoader)
-    
+
     if "departments" not in data:
         data["departments"] = []
 
