@@ -1,7 +1,6 @@
 import os, shutil, uuid
 from typing import Optional, Tuple
-from str_util import is_url
-from net_util import down_image
+from .str_util import is_url
 
 
 def get_files_under_folder(
@@ -51,7 +50,7 @@ def get_image_to_target(
             pass
 
     if is_url(link):
-        down_image(link, os.path.join(target_foldpath, name))
+        raise NotImplementedError("The url is not supported: ", link)
     else:
         if os.path.exists(link) is False:
             print("The path is not exists: ", link)

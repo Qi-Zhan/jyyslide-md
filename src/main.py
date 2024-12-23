@@ -17,8 +17,11 @@ def main():
         print("watching file for changes")
         import livereload
 
+        def generate_slides():
+            converter(args.filepath)
+
         server = livereload.Server()
-        server.watch(args.filepath, lambda: converter(args.filepath))
+        server.watch(args.filepath, generate_slides)
         server.serve()
 
 
