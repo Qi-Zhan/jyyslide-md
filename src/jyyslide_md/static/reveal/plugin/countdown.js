@@ -84,20 +84,23 @@ var RevealCountDown =
 
         function updateTimer(timeLeft) {
             if (counterRef === null) return;
-        
+
             let secondsLeft = timeLeft;
             let minutesLeft = Math.floor(secondsLeft / 60);
             secondsLeft = secondsLeft % 60;
             let hoursLeft = Math.floor(minutesLeft / 60);
             minutesLeft = minutesLeft % 60;
-        
+
             hoursLeft = String(hoursLeft).padStart(2, '0');
             minutesLeft = String(minutesLeft).padStart(2, '0');
             secondsLeft = String(secondsLeft).padStart(2, '0');
 
             size = options.size;
+
+            let color = timeLeft > 0 ? 'black' : 'red';
+
             counterRef.innerHTML = `
-                <span style="font-size: ${size}em; font-family: 'Comic Sans MS', cursive;">
+                <span style="font-size: ${size}em; font-family: 'Comic Sans MS', cursive; color: ${color};">
                     ${hoursLeft} : ${minutesLeft} : ${secondsLeft}
                 </span>
             `;
