@@ -36,6 +36,7 @@ def process_images(content, func):
 from markdown import markdown
 from markdown import Extension
 from markdown.blockprocessors import BlockProcessor
+from .mdx_math import MathExtension
 import xml.etree.ElementTree as etree
 
 
@@ -59,6 +60,7 @@ def md_to_html(md: str) -> str:
 
     extensions: List[Union[str, BoxExtension]] = [
         BoxExtension(),
+        MathExtension(),
         "meta",
         "fenced_code",
         "codehilite",
