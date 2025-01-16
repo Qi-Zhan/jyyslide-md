@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jyyslide-md"
-version = "0.1.2"
+version = "0.1.3"
 description = "A Markdown tool for generating slides."
 authors = [
     {name = "zweix123", email = "1979803044@qq.com"},
