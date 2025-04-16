@@ -180,3 +180,7 @@ section .center {
 .reveal .mul-cols .col {
     width: 100%
 }
+
+#element {
+    visibility: hidden;  /* 初始不显示 */
+}

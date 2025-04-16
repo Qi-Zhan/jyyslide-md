@@ -10,6 +10,18 @@
     <link href="./static/css/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.font.im/css?family=Source+Serif+Pro%7CLato%7CInconsolata" rel="stylesheet"
         type="text/css">
+    <!-- Typed.js -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Font awesome is required for the chalkboard plugin -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css"> -->
+    <!-- Chalkboard plugin -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
     <title> {{ title }} </title>
     <!-- browser favicon -->
     <link rel="shortcut icon" href="./static/img/favicon.png">
@@ -57,6 +69,19 @@
     </div>
 
     <script src="./static/reveal/reveal.js"></script>
+    <script>
+        document.getElementById('startTyping').addEventListener('click', function() {
+           var element = document.getElementById('element');
+           var elementContent = element.innerHTML;
+           element.innerHTML = ''; 
+           element.style.visibility = 'visible';
+           var typed = new Typed('#element', {
+               strings: [elementContent],
+               typeSpeed: 30,
+               showCursor: false,
+           });
+       });
+    </script>
 
     <script>
         Reveal.initialize({
